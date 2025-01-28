@@ -33,43 +33,55 @@ In order to provide deaf-blind people with the resources they require for safe a
 
 # Working of VISIOGUIDE System
 
-1. Power Supply: The ESP32 module, DHT11, PIR, Touch sensors, relay module, and VSDSquadron Mini board all receive the required power from the 5V power supply. Appliances connected to the relay can have their AC mains power controlled by the AC Mains to Supply Power with Relay circuit. 
+1. Initialization & Power Up:
+The system is turned on.The internal components of the VSDSquadron Mini microcontroller are initialized and powered on.
 
-2. Acquisition of Sensor Data: -Temperature and humidity are measured by the DHT11 sensor. This information can be used to control appliances based on temperature (e.g., adjusting fan speed based on temperature). 
--Motion is detected by aaPIR sensor. Actions such as turning lights on when motion is detected and off after a predetermined amount of inactivity can be triggered by this. 
--Touch Sensor: Enables manual device control or the activation of particular actions through touch input.
+2. Acquisition of Sensor Data:
 
-3. Data Processing and Management: Data from the sensors (DHT11, PIR, Touch) is read by the VSDSquadron Mini. makes decisions by processing the sensor data (e.g., adjusting fan speed based on temperature, turning lights on/off based on PIR sensor input). It Transmits and receives commands by communicating with the ESP32 module. Data is received by the ESP32 Module from the VSDSquadron Mini. uses Wi-Fi to connect to the internet. sends information to the cloud (like the Arduino IoT Cloud) for remote access and storage. gets commands for control from the mobile app or the cloud. sends commands to the VSDSquadron Mini for control.
+The ultrasonic sensor receives a trigger signal from the VSDSquadron Mini.After sending out a sound wave, the ultrasonic sensor picks up the reflected echo.The microcontroller determines the distance to the object by timing the sound wave's journey and return. The vibration sensor is constantly watched by the microcontroller for any vibrations that might be signs of movement or intrusion.
 
-4. Appliance Control: The VSDSquadron Mini sends control signals to the relay module. Depending on the signals it receives, switches turn on and off the power to the connected appliances (lights, fans, etc.).
+3. Processing Data and Making Decisions:
 
-5. Control and User Interface: The Arduino IoT Remote mobile app allows users to communicate with the system. Track sensor data in real time (temperature, humidity). Remotely control appliances (fan speed, light on/off, etc.). Plan automated tasks, such as turning on lights at dusk.
+The microcontroller examines the ultrasonic sensor's distance data.It assesses whether the object being spotted is an obstruction (for example, whether it is within a specific range).The microprocessor determines the proper course of action based on the vibration and distance sensor readings.
 
-6. Cloud-Based Communication: Users can access and monitor system data remotely thanks to the ESP32 module's data transmission to the cloud. Additionally, the cloud can offer insights into patterns of energy consumption and store historical data for analysis.
+4. Control of Actuators:
+
+The microcontroller notifies the relays in the event that an obstruction is identified or a security event is initiated (such as vibrations sensed). Relays are used to regulate connected appliances by turning on or off the AC mains electricity.For instance, the system may sound a siren or turn on security lights in the event that an intrusion is detected.
+
+5. Cloud User Interface and Communication:
+
+Sensor data (distance, vibration, etc.) and system status (e.g., alarm triggered) are sent to the cloud using the ESP32 module.Through the cloud, the ESP32 gets commands from the user interface (web-based or mobile app).
+The user interface lets users configure automation schedules, view real-time statistics, and remotely control appliances.
+
+6. User Engagement:
+
+Through the online interface or mobile app, users may control devices, keep an eye on sensor readings, and check the status of the system. For automatic actions, they can create timetables and rules (e.g., switch on lights at sunset, adjust thermostat based on temperature).
+
+7.Constant Observation and Reaction:
+
+The system continuously analyzes sensor data and responds to user commands and preset rules.The system continues to function, offering continuous control and protection.
 
 
-Hence, Overall this "Cost-Effective IoT-Based Home Automation System" functions as: The brain of the system, the VSDSquadron Mini board, gathers information from sensors such as motion, temperature, and humidity. After processing this data, it makes choices like turning on lights when it detects motion or modifying fan speed in response to temperature. Through data transmission to the cloud for remote monitoring and command reception from the user interface (web/mobile app), the ESP32 module enables communication. The VSDSquadron Mini receives these commands and uses them to control the relay module that turns appliances on and off. Through the web interface or mobile app, users communicate with the system, scheduling automated actions, managing devices, and monitoring data. This integrated system offers a practical and economical way to control household appliances.
 
-# Features and Benefits of ( CEHA )
+Improving deaf-blind people's mobility and independence is the goal of the VisioGuide project. An ultrasonic sensor built into the system continuously calculates the distance to objects in the user's path. Following processing of this distance data, the VSDSQuadron Mini converts the data into haptic feedback. The user receives real-time feedback from a vibration motor that is connected to the microcontroller. For instance, a change in vibration pattern may indicate a change in direction or a possible hazard, whereas an increase in vibration intensity may indicate an impending obstacle. The user can more safely and confidently navigate their surroundings thanks to this haptic feedback and their preexisting sensory awareness.The effectiveness of the system is further increased by the ability to customize haptic feedback patterns to each user's needs and preferences thanks to the open-source nature of the RISC-V architecture.
 
-a) It Controls the energy management and consumption with power monitoring of all the devices. It controls all the home appliances from the remote directly. So, it is the Remote Control based System which can control the devices from anywhere at anytime easily and making life easier for the individual . 
-b) The solution also helps in reducing manual effort and improves efficiency . 
-c) This system also optimizes temperature and saving Energy . 
-d) It also reduces the cost of the bills and tracks unnecessary usage of the energy which leads to identifying more areas for improvements in energy saving . 
-e) This system uses low-cost sensors to track and control the functioning of home/offices appliances for example, Light, Fan,etc. from the remote .
+Hence, Overall this "Cost-Effective IoT-Based Home Automation System" functions as .
+
+# Features and Benefits of VISIOGUIDE
+
+a) Cost-effective: Projects with a limited budget can make use of the VSDSQuadron Mini since it is an affordable development board.  
+b) Open-source: The RISC-V architecture and open-source software tools provide flexibility and customization. 
+c) Low Power Consumption: The energy efficiency of the RISC-V core is crucial for battery-powered devices.  
+d) Versatility: The board's peripherals and GPIO pins allow for the integration of a wide range of sensors and actuators. 
+d) Obstacle Detection: The ultrasonic sensor provides the user with real-time environmental awareness by accurately detecting obstacles in their path.  
+e) Haptic Feedback: The vibration motor's unambiguous and educational haptic feedback alerts the user to the presence and proximity of barriers.  
+f) Customisable Feedback: To convey different levels of danger, you can change the pattern and intensity of the vibrations. 
+g) Compact and Lightweight: The VSDSQuadron Mini's small form factor and lightweight design make it easy to integrate into a portable and user-friendly blind stick.
+
 
 ## Some other Key-Features are :- 
 
-- Reducing energy consumption and saving wastage of energy monitoring: This solution is helpful for Person with Disbailities , as they can use remote for controlling the home appliances. 
-
--Cost-Effectiveness: The implementation of a cost-efficient, open-source hardware architecture (VSD mini RISC-V) enhances the economic feasibility of the system.  -Flexibility: The open-source framework of RISC-V permits extensive customization and fosters the creation of a diverse array of features and integrations.  
-
--Innovation: This initiative contributes to the expansion of the RISC-V ecosystem and promotes the advancement of novel and inventive home automation solutions. 
-
--Budget-Friendly: This solution is budget friendly in making this project , as , all the appliance become fully automated, so it makes it easy to control and come under budget as, only sensors are used for making the devices to control automatically. 
-
--User-Friedly: Any user can use it easily and can control automatically all devices with the help of remote as it interface with the app and wifi module.
-
+This project makes use of the RISC-V architecture's open-source nature, which permits adaptability and customization. The solution is affordable due to the utilization of the economical VSDSQuadron Mini board. Additionally, the project places a high priority on user-friendliness, making sure that the target audience can easily use and operate the system. 
 # List of Components Required for CEHA System
 
 
@@ -125,11 +137,11 @@ e) This system uses low-cost sensors to track and control the functioning of hom
 |            |SCA|	vsdsquadron mini GPIO (PC2)|
 
 
-# BLOCK DIAGRAM OF THE CEHA SYSTEM 
+# BLOCK DIAGRAM OF VISIOGUIDE SYSTEM 
 
 ![block diagram CEHA ](https://github.com/user-attachments/assets/f5a8357d-9aba-4cc0-890a-ebbfae2a339f)
 
-# CIRCUIT DIAGRAM OF CEHA SYSTEM
+# CIRCUIT DIAGRAM OF ISIOGUIDE SYSTEM 
 
 ![circuit diagram of CEHA](https://github.com/user-attachments/assets/339c1629-1405-4375-97f7-8114d61c4cf0)
 
