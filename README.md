@@ -260,7 +260,7 @@ void onLight2Change()  {
 void onLight2StateChange()  {
   // Add your code here to act upon Light2State change
 }
-``
+```
 # IMAGES OF THE PROJECT
 ----------
 -------------
@@ -271,7 +271,5 @@ void onLight2StateChange()  {
 ===============================
 # ABOUT 
 ===============
-
-```
 
 
